@@ -29,9 +29,6 @@ function createGallery(galleryItems) {
     .join("");
 }
 
-
-
-
 gallery.addEventListener("click", onPictureClick);
 
 function onPictureClick(evt) {
@@ -49,13 +46,13 @@ function onPictureClick(evt) {
 `);
   instance.show();
 
-  document.addEventListener('keydown',onKeyDown);
+  document.addEventListener("keydown", onKeyDown);
 
   function onKeyDown(e) {
-  //  console.log('e.key: ',e.key);
-   if (e.key==='Escape'){
-    instance.close()
-   }
+    //  console.log('e.key: ',e.key);
+    if (e.key === "Escape") {
+      instance.close();
+    }
   }
 }
 
