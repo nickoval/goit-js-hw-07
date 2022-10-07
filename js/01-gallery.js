@@ -1,5 +1,4 @@
 import { galleryItems } from "./gallery-items.js";
-// Change code below this line
 
 // console.log(galleryItems);
 
@@ -39,14 +38,32 @@ function onPictureClick(evt) {
   }
   evt.preventDefault();
 
-  // console.log(evt.target);
+  console.log(evt.target);
 
-  const instance = basicLightbox.create(`
-    <img src="${evt.target.dataset.source}" width="800" height="600">
-`);
-  instance.show();
+  // Работает, но не снимает слушателя с keydown
+  //   const instance = basicLightbox.create(`
+  //     <img src="${evt.target.dataset.source}" width="800" height="600">
+  // `);
+  //   instance.show();
 
-  document.addEventListener("keydown", onKeyDown);
+  //   document.addEventListener("keydown", onKeyDown);
+
+  //   function onKeyDown(e) {
+  //     //  console.log('e.key: ',e.key);
+  //     if (e.key === "Escape") {
+  //       instance.close();
+  //     }
+  //   }
+  // }
+  // ===========================================================
+
+  const instance = basicLightbox.create(
+    `<img src="${evt.target.dataset.source}">`,
+    {
+      onShow: () => document.addEventListener("keydown", onKeyDown),
+      onClose: () => document.removeEventListener("keydown", onKeyDown),
+    }
+  );
 
   function onKeyDown(e) {
     //  console.log('e.key: ',e.key);
@@ -54,12 +71,6 @@ function onPictureClick(evt) {
       instance.close();
     }
   }
+
+  instance.show();
 }
-
-// if (activeImage) {
-//   document.addEventListener('keydown',onKeyDown);
-
-//   function onKeyDown(e) {
-//    console.log('e.key:',e.key);
-//   }
-// }
