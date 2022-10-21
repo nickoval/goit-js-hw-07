@@ -1,15 +1,14 @@
 import { galleryItems } from "./gallery-items.js";
 
 // console.log(galleryItems);
-
-const gallery = document.querySelector(".gallery");
-
 // const activeImage = document.querySelector('.basicLightbox--visible');
 
-const imageList = createGallery(galleryItems);
+const gallery = document.querySelector(".gallery");
+const imageList = createGallery();
+
 gallery.insertAdjacentHTML("beforeend", imageList);
 
-function createGallery(galleryItems) {
+function createGallery() {
   return galleryItems
     .map((item) => {
       const { preview, original, description } = item;
