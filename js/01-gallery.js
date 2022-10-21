@@ -4,11 +4,7 @@ import { galleryItems } from "./gallery-items.js";
 // const activeImage = document.querySelector('.basicLightbox--visible');
 
 const gallery = document.querySelector(".gallery");
-const imageList = createGallery();
-
-gallery.insertAdjacentHTML("beforeend", imageList);
-
-function createGallery() {
+const imageList = function createGallery() {
   return galleryItems
     .map((item) => {
       const { preview, original, description } = item;
@@ -25,7 +21,9 @@ function createGallery() {
       </div>`;
     })
     .join("");
-}
+};
+
+gallery.insertAdjacentHTML("beforeend", imageList());
 
 gallery.addEventListener("click", onPictureClick);
 
